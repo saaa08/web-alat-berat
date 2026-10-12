@@ -9,6 +9,7 @@
     "tahun": 2019,
     "lokasi": "Site A - Blok 3",
     "jam_operasi": 8450,
+    "berat_operasi": 20000,
     "status": "Aktif",
     "gambar": "images/excavator.svg"
   },
@@ -22,6 +23,7 @@
     "tahun": 2020,
     "lokasi": "Site A - Blok 1",
     "jam_operasi": 6120,
+    "berat_operasi": 21000,
     "status": "Aktif",
     "gambar": "images/excavator.svg"
   },
@@ -35,6 +37,7 @@
     "tahun": 2017,
     "lokasi": "Site B - Area Land Clearing",
     "jam_operasi": 11230,
+    "berat_operasi": 20200,
     "status": "Aktif",
     "gambar": "images/bulldozer.svg"
   },
@@ -48,6 +51,7 @@
     "tahun": 2021,
     "lokasi": "Gudang Utama",
     "jam_operasi": 3210,
+    "berat_operasi": 4000,
     "status": "Aktif",
     "gambar": "images/forklift.svg"
   },
@@ -61,6 +65,7 @@
     "tahun": 2018,
     "lokasi": "Site B - Hauling Road",
     "jam_operasi": 9870,
+    "berat_operasi": 26000,
     "status": "Perawatan",
     "gambar": "images/dump-truck.svg"
   }

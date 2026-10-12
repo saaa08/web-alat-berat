@@ -6,7 +6,8 @@
     "kategori": "Filter",
     "merek_part": "Komatsu Genuine",
     "harga_estimasi": 185000,
-    "vendor": "Toko Sparepart Jaya Abadi",
+    "stok": 12,
+    "satuan": "pcs",
     "gambar": "images/filter-oli.svg"
   },
   {
@@ -16,7 +17,8 @@
     "kategori": "Filter",
     "merek_part": "Komatsu Genuine",
     "harga_estimasi": 210000,
-    "vendor": "Toko Sparepart Jaya Abadi",
+    "stok": 8,
+    "satuan": "pcs",
     "gambar": "images/filter-solar.svg"
   },
   {
@@ -26,7 +28,8 @@
     "kategori": "Filter",
     "merek_part": "Komatsu Genuine",
     "harga_estimasi": 325000,
-    "vendor": "PT Sumber Teknik",
+    "stok": 5,
+    "satuan": "pcs",
     "gambar": "images/filter-udara.svg"
   },
   {
@@ -36,7 +39,8 @@
     "kategori": "Oli & Pelumas",
     "merek_part": "Shell Rimula R4",
     "harga_estimasi": 68000,
-    "vendor": "PT Sumber Teknik",
+    "stok": 120,
+    "satuan": "liter",
     "gambar": "images/oil.svg"
   },
   {
@@ -46,7 +50,8 @@
     "kategori": "Belt",
     "merek_part": "Mitsuboshi",
     "harga_estimasi": 145000,
-    "vendor": "Toko Sparepart Jaya Abadi",
+    "stok": 6,
+    "satuan": "pcs",
     "gambar": "images/v-belt.svg"
   },
   {
@@ -56,7 +61,8 @@
     "kategori": "Filter",
     "merek_part": "Komatsu Genuine",
     "harga_estimasi": 420000,
-    "vendor": "PT Sumber Teknik",
+    "stok": 3,
+    "satuan": "pcs",
     "gambar": "images/filter-oli.svg"
   },
   {
@@ -66,7 +72,8 @@
     "kategori": "Oli & Pelumas",
     "merek_part": "Castrol Hyspin",
     "harga_estimasi": 52000,
-    "vendor": "PT Sumber Teknik",
+    "stok": 200,
+    "satuan": "liter",
     "gambar": "images/oil.svg"
   }
 ]

@@ -8,6 +8,7 @@
   var KATEGORI_UNIT = ['Excavator', 'Bulldozer', 'Forklift', 'Dump Truck', 'Wheel Loader', 'Motor Grader', 'Crane', 'Lainnya'];
   var STATUS_UNIT = ['Aktif', 'Perawatan', 'Standby', 'Rusak'];
   var KATEGORI_PART = ['Filter', 'Oli & Pelumas', 'Belt', 'Elektrikal', 'Hidrolik', 'Fastener', 'Lainnya'];
+  var SATUAN = ['pcs', 'liter', 'set', 'unit', 'meter', 'roll', 'box', 'lainnya'];
 
   var state = {
     equipment: [],
@@ -150,6 +151,7 @@
       field('Tahun', numberInput('tahun', u.tahun)) +
       field('Lokasi', input('lokasi', u.lokasi)) +
       field('Jam Operasi (HM)', numberInput('jam_operasi', u.jam_operasi)) +
+      field('Berat Operasi (kg)', numberInput('berat_operasi', u.berat_operasi)) +
       field(
         'Gambar',
         '<div class="input-with-btn">' + input('gambar', u.gambar) +
@@ -174,7 +176,8 @@
       field('Kategori', selectInput('kategori', KATEGORI_PART, p.kategori)) +
       field('Merek Part', input('merek_part', p.merek_part)) +
       field('Estimasi Harga (Rp)', numberInput('harga_estimasi', p.harga_estimasi)) +
-      field('Vendor', input('vendor', p.vendor)) +
+      field('Stok', numberInput('stok', p.stok)) +
+      field('Satuan', selectInput('satuan', SATUAN, p.satuan)) +
       field(
         'Gambar',
         '<div class="input-with-btn">' + input('gambar', p.gambar) +
@@ -249,7 +252,8 @@
     var rows = state.spareparts.length
       ? state.spareparts.map(function (p, i) {
           var sub = '<span class="mono">' + esc(p.part_number) + '</span> &middot; ' +
-            esc(p.kategori || '-') + ' &middot; ' + esc(U.formatRupiah(p.harga_estimasi));
+            esc(p.kategori || '-') + ' &middot; ' + esc(U.formatRupiah(p.harga_estimasi)) +
+            ' &middot; stok ' + esc(p.stok == null ? '-' : p.stok + ' ' + (p.satuan || ''));
           return rowItem(esc(p.nama_part), sub, i, 'spareparts');
         }).join('')
       : '<p class="empty">Belum ada data sparepart.</p>';
@@ -439,7 +443,7 @@
     fd.forEach(function (v, k) {
       o[k] = typeof v === 'string' ? v.trim() : v;
     });
-    ['tahun', 'jam_operasi', 'harga_estimasi', 'hm_terakhir'].forEach(function (key) {
+    ['tahun', 'jam_operasi', 'berat_operasi', 'harga_estimasi', 'stok', 'hm_terakhir'].forEach(function (key) {
       if (key in o) o[key] = o[key] === '' ? null : Number(o[key]);
     });
     return o;

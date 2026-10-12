@@ -171,6 +171,11 @@
     );
   }
 
+  function stokText(part) {
+    if (part.stok == null || part.stok === '') return '-';
+    return U.formatNumber(part.stok) + (part.satuan ? ' ' + part.satuan : '');
+  }
+
   function partCard(unit, rel) {
     var part = findPart(rel.id_part);
     if (!part) return '';
@@ -202,8 +207,8 @@
       '<div><span class="info-label">Estimasi Harga</span><span class="info-value">' +
       U.formatRupiah(part.harga_estimasi) +
       '</span></div>' +
-      '<div><span class="info-label">Vendor</span><span class="info-value">' +
-      U.escapeHtml(part.vendor) +
+      '<div><span class="info-label">Stok</span><span class="info-value">' +
+      U.escapeHtml(stokText(part)) +
       '</span></div>' +
       '</div>' +
       '<div class="part-service">' +
@@ -251,6 +256,7 @@
     html += infoRow('Tahun', unit.tahun);
     html += infoRow('Lokasi', unit.lokasi);
     html += infoRow('Jam Operasi', U.formatNumber(unit.jam_operasi) + ' HM');
+    html += infoRow('Berat Operasi', U.formatNumber(unit.berat_operasi) + ' kg');
     html += infoRow('Status', unit.status);
     html += '</div>';
     html += '</div>';
