@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Filter Oli">
+  <rect width="400" height="300" fill="#101a24"/>
+  <rect x="16" y="16" width="368" height="268" rx="20" fill="#16222f"/>
+  <rect x="180" y="56" width="40" height="28" rx="6" fill="#4a5b6c"/>
+  <rect x="146" y="78" width="108" height="30" rx="10" fill="#c98f00"/>
+  <rect x="150" y="100" width="100" height="136" rx="18" fill="#ffb703"/>
+  <g fill="#c98f00">
+    <rect x="150" y="126" width="100" height="7"/>
+    <rect x="150" y="150" width="100" height="7"/>
+    <rect x="150" y="174" width="100" height="7"/>
+    <rect x="150" y="198" width="100" height="7"/>
+  </g>
+  <rect x="150" y="100" width="100" height="136" rx="18" fill="none" stroke="#e09f00" stroke-width="3"/>
+</svg>

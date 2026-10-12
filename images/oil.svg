@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Oli dan Pelumas">
+  <rect width="400" height="300" fill="#101a24"/>
+  <rect x="16" y="16" width="368" height="268" rx="20" fill="#16222f"/>
+  <rect x="186" y="60" width="28" height="26" rx="6" fill="#c98f00"/>
+  <rect x="172" y="80" width="56" height="16" rx="6" fill="#ffb703"/>
+  <path d="M158 96 h84 a22 22 0 0 1 22 22 v92 a22 22 0 0 1 -22 22 h-84 a22 22 0 0 1 -22 -22 v-92 a22 22 0 0 1 22 -22 z" fill="#ffb703"/>
+  <rect x="150" y="150" width="110" height="58" rx="8" fill="#16222f" opacity="0.85"/>
+  <path d="M205 158 c-8 12 -13 18 -13 25 a13 13 0 0 0 26 0 c0 -7 -5 -13 -13 -25 z" fill="#ffb703"/>
+</svg>

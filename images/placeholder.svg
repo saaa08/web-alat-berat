@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Belum ada gambar">
+  <rect width="400" height="300" fill="#101a24"/>
+  <rect x="16" y="16" width="368" height="268" rx="20" fill="#16222f"/>
+  <rect x="132" y="98" width="136" height="104" rx="12" fill="none" stroke="#33475a" stroke-width="8"/>
+  <circle cx="172" cy="132" r="13" fill="#4a5b6c"/>
+  <path d="M140 190 l38 -42 l30 32 l24 -22 l40 36 z" fill="#33475a"/>
+  <text x="200" y="236" text-anchor="middle" font-family="system-ui, Segoe UI, sans-serif" font-size="16" fill="#9fb2c6">Belum ada gambar</text>
+</svg>

@@ -1,0 +1,67 @@
+[
+  {
+    "id_unit": "EXV-001",
+    "nama_unit": "Excavator Komatsu PC200",
+    "kategori": "Excavator",
+    "merek": "Komatsu",
+    "model": "PC200-8",
+    "nomor_seri": "KMTPC2008-773412",
+    "tahun": 2019,
+    "lokasi": "Site A - Blok 3",
+    "jam_operasi": 8450,
+    "status": "Aktif",
+    "gambar": "images/excavator.svg"
+  },
+  {
+    "id_unit": "EXV-002",
+    "nama_unit": "Excavator Caterpillar 320D",
+    "kategori": "Excavator",
+    "merek": "Caterpillar",
+    "model": "320D2",
+    "nomor_seri": "CAT0320D-KJX1120",
+    "tahun": 2020,
+    "lokasi": "Site A - Blok 1",
+    "jam_operasi": 6120,
+    "status": "Aktif",
+    "gambar": "images/excavator.svg"
+  },
+  {
+    "id_unit": "DZR-002",
+    "nama_unit": "Bulldozer Komatsu D65",
+    "kategori": "Bulldozer",
+    "merek": "Komatsu",
+    "model": "D65EX-16",
+    "nomor_seri": "KMTD65EX-554201",
+    "tahun": 2017,
+    "lokasi": "Site B - Area Land Clearing",
+    "jam_operasi": 11230,
+    "status": "Aktif",
+    "gambar": "images/bulldozer.svg"
+  },
+  {
+    "id_unit": "FLT-003",
+    "nama_unit": "Forklift Toyota 2.5 Ton",
+    "kategori": "Forklift",
+    "merek": "Toyota",
+    "model": "8FGU25",
+    "nomor_seri": "TYT8FG-998877",
+    "tahun": 2021,
+    "lokasi": "Gudang Utama",
+    "jam_operasi": 3210,
+    "status": "Aktif",
+    "gambar": "images/forklift.svg"
+  },
+  {
+    "id_unit": "DT-004",
+    "nama_unit": "Dump Truck Hino 500",
+    "kategori": "Dump Truck",
+    "merek": "Hino",
+    "model": "FM260 JD",
+    "nomor_seri": "HINOFM260-332145",
+    "tahun": 2018,
+    "lokasi": "Site B - Hauling Road",
+    "jam_operasi": 9870,
+    "status": "Perawatan",
+    "gambar": "images/dump-truck.svg"
+  }
+]

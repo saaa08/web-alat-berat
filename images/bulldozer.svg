@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Bulldozer">
+  <rect width="400" height="300" fill="#101a24"/>
+  <rect x="16" y="16" width="368" height="268" rx="20" fill="#16222f"/>
+  <line x1="30" y1="250" x2="370" y2="250" stroke="#2b3b4c" stroke-width="4" stroke-linecap="round"/>
+  <rect x="52" y="206" width="252" height="48" rx="24" fill="#33475a"/>
+  <g fill="#1b2634">
+    <circle cx="84" cy="230" r="13"/>
+    <circle cx="128" cy="230" r="13"/>
+    <circle cx="172" cy="230" r="13"/>
+    <circle cx="216" cy="230" r="13"/>
+    <circle cx="260" cy="230" r="13"/>
+  </g>
+  <rect x="248" y="176" width="86" height="14" rx="7" fill="#33475a"/>
+  <rect x="90" y="150" width="152" height="58" rx="12" fill="#ffb703"/>
+  <rect x="100" y="116" width="64" height="48" rx="8" fill="#c98f00"/>
+  <rect x="108" y="124" width="48" height="32" rx="4" fill="#cfe6ff"/>
+  <path d="M322 138 q22 0 22 22 v74 q0 12 -12 12 h-24 v-108 z" fill="#4a5b6c"/>
+  <rect x="326" y="150" width="8" height="86" rx="4" fill="#63798e"/>
+</svg>

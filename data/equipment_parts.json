@@ -1,0 +1,130 @@
+[
+  {
+    "id_unit": "EXV-001",
+    "id_part": "P-001",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-12",
+    "hm_terakhir": 8200,
+    "catatan": "Ganti saat servis rutin, cek kebocoran oli."
+  },
+  {
+    "id_unit": "EXV-001",
+    "id_part": "P-002",
+    "interval_service": "Setiap 500 jam operasi",
+    "terakhir_ganti": "2025-08-30",
+    "hm_terakhir": 8000,
+    "catatan": "Bleeding fuel system setelah penggantian."
+  },
+  {
+    "id_unit": "EXV-001",
+    "id_part": "P-003",
+    "interval_service": "Setiap 1000 jam / bersihkan tiap 250 jam",
+    "terakhir_ganti": "2025-07-15",
+    "hm_terakhir": 7600,
+    "catatan": "Cek indikator dust di panel."
+  },
+  {
+    "id_unit": "EXV-001",
+    "id_part": "P-004",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-12",
+    "hm_terakhir": 8200,
+    "catatan": "Kapasitas 22 liter per penggantian."
+  },
+  {
+    "id_unit": "EXV-001",
+    "id_part": "P-007",
+    "interval_service": "Setiap 2000 jam operasi",
+    "terakhir_ganti": "2025-05-20",
+    "hm_terakhir": 6900,
+    "catatan": "Gunakan oli hidrolik ISO 46 bersih."
+  },
+  {
+    "id_unit": "EXV-002",
+    "id_part": "P-001",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-05",
+    "hm_terakhir": 6000,
+    "catatan": "Filter oli mesin CAT 320D."
+  },
+  {
+    "id_unit": "EXV-002",
+    "id_part": "P-004",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-05",
+    "hm_terakhir": 6000,
+    "catatan": "Kapasitas 18 liter per penggantian."
+  },
+  {
+    "id_unit": "EXV-002",
+    "id_part": "P-005",
+    "interval_service": "Cek tiap 500 jam",
+    "terakhir_ganti": "2025-06-10",
+    "hm_terakhir": 5400,
+    "catatan": "Ganti bila retak / mengkilap."
+  },
+  {
+    "id_unit": "DZR-002",
+    "id_part": "P-001",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-08-01",
+    "hm_terakhir": 11000,
+    "catatan": "Kondisi kerja berdebu, cek lebih sering."
+  },
+  {
+    "id_unit": "DZR-002",
+    "id_part": "P-002",
+    "interval_service": "Setiap 500 jam operasi",
+    "terakhir_ganti": "2025-07-10",
+    "hm_terakhir": 10800,
+    "catatan": "Filter solar utama."
+  },
+  {
+    "id_unit": "DZR-002",
+    "id_part": "P-003",
+    "interval_service": "Setiap 1000 jam / bersihkan tiap 250 jam",
+    "terakhir_ganti": "2025-06-18",
+    "hm_terakhir": 10400,
+    "catatan": "Area berdebu tinggi."
+  },
+  {
+    "id_unit": "FLT-003",
+    "id_part": "P-001",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-20",
+    "hm_terakhir": 3100,
+    "catatan": "Forklift bahan bakar bensin/gas."
+  },
+  {
+    "id_unit": "FLT-003",
+    "id_part": "P-004",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-09-20",
+    "hm_terakhir": 3100,
+    "catatan": "Kapasitas 4 liter per penggantian."
+  },
+  {
+    "id_unit": "DT-004",
+    "id_part": "P-001",
+    "interval_service": "Setiap 250 jam operasi",
+    "terakhir_ganti": "2025-08-22",
+    "hm_terakhir": 9700,
+    "catatan": "Servis rutin armada hauling."
+  },
+  {
+    "id_unit": "DT-004",
+    "id_part": "P-002",
+    "interval_service": "Setiap 500 jam operasi",
+    "terakhir_ganti": "2025-08-22",
+    "hm_terakhir": 9700,
+    "catatan": "Drain water separator saat ganti."
+  },
+  {
+    "id_unit": "DT-004",
+    "id_part": "P-006",
+    "interval_service": "Setiap 1000 jam operasi",
+    "terakhir_ganti": "2025-04-30",
+    "hm_terakhir": 8600,
+    "catatan": "Filter oli transmisi."
+  }
+]

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Filter Udara">
+  <rect width="400" height="300" fill="#101a24"/>
+  <rect x="16" y="16" width="368" height="268" rx="20" fill="#16222f"/>
+  <rect x="136" y="84" width="128" height="24" rx="8" fill="#63798e"/>
+  <rect x="132" y="104" width="136" height="128" rx="14" fill="#dfe8f0"/>
+  <g stroke="#9fb2c6" stroke-width="4">
+    <line x1="150" y1="112" x2="150" y2="224"/>
+    <line x1="166" y1="112" x2="166" y2="224"/>
+    <line x1="182" y1="112" x2="182" y2="224"/>
+    <line x1="198" y1="112" x2="198" y2="224"/>
+    <line x1="214" y1="112" x2="214" y2="224"/>
+    <line x1="230" y1="112" x2="230" y2="224"/>
+    <line x1="246" y1="112" x2="246" y2="224"/>
+  </g>
+  <rect x="132" y="104" width="136" height="128" rx="14" fill="none" stroke="#63798e" stroke-width="4"/>
+  <rect x="136" y="228" width="128" height="22" rx="8" fill="#63798e"/>
+</svg>
