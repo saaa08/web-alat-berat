@@ -38,12 +38,18 @@
     }
   }
 
+  // Kunci tulis admin hanya didefinisikan di sini (satu sumber), dipakai editor.
+  function adminKey() {
+    return PASS;
+  }
+
   document.addEventListener('DOMContentLoaded', applyNav);
 
   global.Auth = {
     isLoggedIn: isLoggedIn,
     login: login,
     logout: logout,
-    applyNav: applyNav
+    applyNav: applyNav,
+    adminKey: adminKey
   };
 })(window);

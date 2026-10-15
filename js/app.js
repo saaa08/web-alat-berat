@@ -2,37 +2,24 @@
   'use strict';
 
   var U = window.Utils;
+  var C = window.Core;
 
   var state = {
     equipment: [],
-    spareparts: [],
-    relations: [],
     loaded: false,
+    source: 'local',
     error: null
   };
 
   var appEl;
 
   function loadData() {
-    return Promise.all([
-      fetch('data/equipment.json').then(function (r) {
-        if (!r.ok) throw new Error('equipment.json');
-        return r.json();
-      }),
-      fetch('data/spareparts.json').then(function (r) {
-        if (!r.ok) throw new Error('spareparts.json');
-        return r.json();
-      }),
-      fetch('data/equipment_parts.json').then(function (r) {
-        if (!r.ok) throw new Error('equipment_parts.json');
-        return r.json();
-      })
-    ])
+    return window.Api.getData()
       .then(function (res) {
-        state.equipment = res[0];
-        state.spareparts = res[1];
-        state.relations = res[2];
+        state.equipment = res.equipment || [];
+        state.source = res.source || 'local';
         state.loaded = true;
+        state.error = null;
       })
       .catch(function (err) {
         state.error = err;
@@ -43,18 +30,6 @@
     return state.equipment.filter(function (u) {
       return u.id_unit === id;
     })[0];
-  }
-
-  function findPart(id) {
-    return state.spareparts.filter(function (p) {
-      return p.id_part === id;
-    })[0];
-  }
-
-  function relationsForUnit(id) {
-    return state.relations.filter(function (r) {
-      return r.id_unit === id;
-    });
   }
 
   function parseRoute() {
@@ -69,53 +44,31 @@
     return { name: 'notfound' };
   }
 
-  function imageSrc(item) {
-    return item && item.gambar ? item.gambar : 'images/placeholder.svg';
-  }
-
-  function imageTag(item, className, alt) {
-    var src = imageSrc(item);
-    var label =
-      alt || (item && (item.nama_unit || item.nama_part)) || 'Gambar';
-    return (
-      '<img class="' +
-      className +
-      '" src="' +
-      U.escapeHtml(src) +
-      '" alt="' +
-      U.escapeHtml(label) +
-      '" loading="lazy" onerror="this.onerror=null;this.src=\'images/placeholder.svg\';" />'
-    );
+  function qrBaseUrl() {
+    return (localStorage.getItem('alatberat-qr-base-url') || window.location.origin + window.location.pathname)
+      .replace(/index\.html$/, '');
   }
 
   function unitCard(unit) {
+    var nParts = (unit.spareparts || []).length;
     return (
       '<a class="card unit-card" href="#/unit/' +
       encodeURIComponent(unit.id_unit) +
       '">' +
-      imageTag(unit, 'unit-thumb', unit.nama_unit) +
+      C.imageTag(unit, 'unit-thumb', unit.nama_unit) +
       '<div class="unit-card-body">' +
       '<div class="unit-card-top">' +
-      '<span class="badge">' +
-      U.escapeHtml(unit.kategori) +
-      '</span>' +
+      '<span class="badge">' + U.escapeHtml(unit.kategori) + '</span>' +
       '<span class="status status--' +
-      (unit.status === 'Aktif' ? 'aktif' : 'lain') +
-      '">' +
-      U.escapeHtml(unit.status) +
-      '</span>' +
+      (unit.status === 'Aktif' || /Baik/.test(unit.status || '') ? 'aktif' : 'lain') +
+      '">' + U.escapeHtml(unit.status) + '</span>' +
       '</div>' +
-      '<h3 class="unit-card-title">' +
-      U.escapeHtml(unit.nama_unit) +
-      '</h3>' +
+      '<h3 class="unit-card-title">' + U.escapeHtml(unit.nama_unit) + '</h3>' +
       '<div class="unit-card-meta">' +
-      '<span class="mono">' +
-      U.escapeHtml(unit.id_unit) +
-      '</span>' +
-      '<span>' +
-      U.escapeHtml(unit.lokasi) +
-      '</span>' +
+      '<span class="mono">' + U.escapeHtml(unit.id_unit) + '</span>' +
+      '<span>' + U.escapeHtml(unit.lokasi) + '</span>' +
       '</div>' +
+      '<div class="unit-card-meta"><span class="mono">' + nParts + ' sparepart</span></div>' +
       '</div>' +
       '</a>'
     );
@@ -161,67 +114,38 @@
   function infoRow(label, value) {
     return (
       '<div class="info-row">' +
-      '<span class="info-label">' +
-      U.escapeHtml(label) +
-      '</span>' +
-      '<span class="info-value">' +
-      U.escapeHtml(value) +
-      '</span>' +
+      '<span class="info-label">' + U.escapeHtml(label) + '</span>' +
+      '<span class="info-value">' + U.escapeHtml(value) + '</span>' +
       '</div>'
     );
   }
 
-  function stokText(part) {
-    if (part.stok == null || part.stok === '') return '-';
-    return U.formatNumber(part.stok) + (part.satuan ? ' ' + part.satuan : '');
-  }
-
-  function partCard(unit, rel) {
-    var part = findPart(rel.id_part);
-    if (!part) return '';
-    var lastGanti = rel.terakhir_ganti
-      ? U.formatDate(rel.terakhir_ganti) +
-        (rel.hm_terakhir ? ' (' + U.formatNumber(rel.hm_terakhir) + ' HM)' : '')
+  function partCard(part) {
+    var lastGanti = part.terakhir_ganti
+      ? U.formatDate(part.terakhir_ganti) +
+        (part.hm_terakhir ? ' (' + U.formatNumber(part.hm_terakhir) + ' HM)' : '')
       : 'Belum ada catatan';
 
     return (
       '<article class="card part-card">' +
       '<div class="part-head">' +
-      imageTag(part, 'part-thumb', part.nama_part) +
+      C.imageTag(part, 'part-thumb', part.nama_part) +
       '<div class="part-head-text">' +
-      '<h3 class="part-name">' +
-      U.escapeHtml(part.nama_part) +
-      '</h3>' +
-      '<span class="badge badge--soft">' +
-      U.escapeHtml(part.kategori) +
-      '</span>' +
+      '<h3 class="part-name">' + U.escapeHtml(part.nama_part) + '</h3>' +
+      '<span class="badge badge--soft">' + U.escapeHtml(part.kategori) + '</span>' +
       '</div>' +
       '</div>' +
       '<div class="part-grid">' +
-      '<div><span class="info-label">Part Number</span><span class="info-value mono part-number">' +
-      U.escapeHtml(part.part_number) +
-      '</span></div>' +
-      '<div><span class="info-label">Merek</span><span class="info-value">' +
-      U.escapeHtml(part.merek_part) +
-      '</span></div>' +
-      '<div><span class="info-label">Estimasi Harga</span><span class="info-value">' +
-      U.formatRupiah(part.harga_estimasi) +
-      '</span></div>' +
-      '<div><span class="info-label">Stok</span><span class="info-value">' +
-      U.escapeHtml(stokText(part)) +
-      '</span></div>' +
+      '<div><span class="info-label">Part Number</span><span class="info-value mono part-number">' + U.escapeHtml(part.part_number) + '</span></div>' +
+      '<div><span class="info-label">Merek</span><span class="info-value">' + U.escapeHtml(part.merek_part) + '</span></div>' +
+      '<div><span class="info-label">Estimasi Harga</span><span class="info-value">' + U.formatRupiah(part.harga_estimasi) + '</span></div>' +
+      '<div><span class="info-label">Stok</span><span class="info-value">' + U.escapeHtml(C.stokText(part)) + '</span></div>' +
       '</div>' +
       '<div class="part-service">' +
-      '<div><span class="info-label">Interval Servis</span><span class="info-value">' +
-      U.escapeHtml(rel.interval_service || '-') +
-      '</span></div>' +
-      '<div><span class="info-label">Terakhir Ganti</span><span class="info-value">' +
-      U.escapeHtml(lastGanti) +
-      '</span></div>' +
-      (rel.catatan
-        ? '<div><span class="info-label">Catatan</span><span class="info-value">' +
-          U.escapeHtml(rel.catatan) +
-          '</span></div>'
+      '<div><span class="info-label">Interval Servis</span><span class="info-value">' + U.escapeHtml(part.interval_service || '-') + '</span></div>' +
+      '<div><span class="info-label">Terakhir Ganti</span><span class="info-value">' + U.escapeHtml(lastGanti) + '</span></div>' +
+      (part.catatan
+        ? '<div><span class="info-label">Catatan</span><span class="info-value">' + U.escapeHtml(part.catatan) + '</span></div>'
         : '') +
       '</div>' +
       '</article>'
@@ -235,46 +159,72 @@
       return;
     }
 
-    var rels = relationsForUnit(unit.id_unit);
-    var partsHtml = rels.length
-      ? rels.map(function (r) {
-          return partCard(unit, r);
-        }).join('')
+    var parts = unit.spareparts || [];
+    var partsHtml = parts.length
+      ? parts.map(partCard).join('')
       : '<p class="empty">Belum ada data sparepart untuk unit ini.</p>';
+
+    var info = '';
+    var merekModel = [unit.merek, unit.model].filter(Boolean).join(' ');
+    if (merekModel) info += infoRow('Merek / Model', merekModel);
+    if (unit.nomor_seri) info += infoRow('Nomor Seri', unit.nomor_seri);
+    if (unit.tahun) info += infoRow('Tahun', unit.tahun);
+    if (unit.lokasi) info += infoRow('Lokasi', unit.lokasi);
+    if (unit.jumlah) info += infoRow('Jumlah', unit.jumlah);
+    if (unit.kondisi) info += infoRow('Kondisi', unit.kondisi);
+    if (unit.status) info += infoRow('Status', unit.status);
+    if (unit.nilai_perolehan != null) info += infoRow('Nilai Perolehan', U.formatRupiah(unit.nilai_perolehan));
+    if (unit.surat_pajak) info += infoRow('Surat / Pajak', unit.surat_pajak);
+    if (unit.nota) info += infoRow('Nota', unit.nota);
+    if (unit.catatan) info += infoRow('Catatan', unit.catatan);
+    info += infoRow('Partisipan', unit.partisipan ? unit.partisipan : '-');
 
     var html = '';
     html += '<a class="back" href="#/">&#8592; Kembali</a>';
     html += '<section class="unit-header card">';
-    html += imageTag(unit, 'unit-photo', unit.nama_unit);
+    html += C.imageTag(unit, 'unit-photo', unit.nama_unit);
     html += '<div class="unit-header-body">';
     html += '<span class="badge">' + U.escapeHtml(unit.kategori) + '</span>';
     html += '<h1 class="unit-title">' + U.escapeHtml(unit.nama_unit) + '</h1>';
     html += '<p class="unit-id mono">' + U.escapeHtml(unit.id_unit) + '</p>';
-    html += '<div class="info-list">';
-    html += infoRow('Merek / Model', unit.merek + ' ' + unit.model);
-    html += infoRow('Nomor Seri', unit.nomor_seri);
-    html += infoRow('Tahun', unit.tahun);
-    html += infoRow('Lokasi', unit.lokasi);
-    html += infoRow('Jam Operasi', U.formatNumber(unit.jam_operasi) + ' HM');
-    html += infoRow('Berat Operasi', U.formatNumber(unit.berat_operasi) + ' kg');
-    html += infoRow('Status', unit.status);
-    html += '</div>';
+    html += '<div class="info-list">' + info + '</div>';
     html += '</div>';
     html += '</section>';
 
-    html += '<h2 class="section-title">Sparepart Kompatibel (' + rels.length + ')</h2>';
+    html += '<h2 class="section-title">Sparepart Kompatibel (' + parts.length + ')</h2>';
     html += '<div class="list">' + partsHtml + '</div>';
 
+    var qrUrl = qrBaseUrl() + '#/unit/' + encodeURIComponent(unit.id_unit);
+    try {
+      var qrData = C.makeQrDataUrl(qrUrl);
+      html += '<section class="card qr-unit">';
+      html += '  <div class="qr-unit-head"><h2 class="section-title">Kode Barkode (QR)</h2><span class="muted mono">' + U.escapeHtml(unit.id_unit) + '</span></div>';
+      html += '  <div class="qr-unit-body">';
+      html += '    <img class="qr-img" src="' + qrData + '" alt="QR ' + U.escapeHtml(unit.id_unit) + '">';
+      html += '    <div class="qr-unit-info">';
+      html += '      <div class="muted">Link:</div>';
+      html += '      <div class="mono qr-url">' + U.escapeHtml(qrUrl) + '</div>';
+      html += '      <a class="btn-sm" href="' + qrData + '" download="QR-' + U.escapeHtml(unit.id_unit) + '.png">Unduh PNG</a>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</section>';
+    } catch (e) {}
+
+    html += '<div id="operator-area"></div>';
+
     appEl.innerHTML = html;
+    window.scrollTo(0, 0);
+
+    if (window.Operator && window.Operator.mount) {
+      window.Operator.mount(unit);
+    }
   }
 
   function renderNotFound(id) {
     appEl.innerHTML =
       '<section class="card empty-state">' +
       '<h1>Unit tidak ditemukan</h1>' +
-      '<p class="muted">ID <span class="mono">' +
-      U.escapeHtml(id || '-') +
-      '</span> tidak terdaftar pada sistem.</p>' +
+      '<p class="muted">ID <span class="mono">' + U.escapeHtml(id || '-') + '</span> tidak terdaftar pada sistem.</p>' +
       '<a class="btn" href="#/">Kembali ke Daftar</a>' +
       '</section>';
   }
@@ -304,12 +254,22 @@
     window.scrollTo(0, 0);
   }
 
+  function reload() {
+    return loadData().then(route);
+  }
+
   function init() {
     appEl = document.getElementById('app');
     appEl.innerHTML = '<p class="empty loading">Memuat data...</p>';
     window.addEventListener('hashchange', route);
     loadData().then(route);
   }
+
+  window.UnitApp = {
+    reload: reload,
+    findUnit: findUnit,
+    getState: function () { return state; }
+  };
 
   document.addEventListener('DOMContentLoaded', init);
 })();
